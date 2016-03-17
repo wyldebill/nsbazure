@@ -1,4 +1,5 @@
 ﻿using NSB.Messages;
+using NSB.Messages.Commands;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,7 +19,7 @@ namespace WebApplication2.Controllers
         public ActionResult TestNSB()
         {
             Random rnd = new Random();
-            var command = new NSB.Messages.Order()
+            var command = new PlaceOrderCommand()
             {
                 Id = new Guid(),
                 Amount = rnd.Next(1, 100)

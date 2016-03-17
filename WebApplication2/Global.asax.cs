@@ -12,11 +12,11 @@ namespace WebApplication2
     public class MvcApplication : System.Web.HttpApplication
     {
 
-        private static ISendOnlyBus bus;
+        private static IBus bus;
 
-        private ISendOnlyBus startableBus;
+        private IStartableBus startableBus;
 
-        public static ISendOnlyBus Bus
+        public static IBus Bus
         {
             get { return bus; }
         }
@@ -27,23 +27,23 @@ namespace WebApplication2
 
             var config = new BusConfiguration();
 
-            config.Conventions();
-            //        .DefiningCommandsAs(t => t.Namespace != null && t.Namespace.StartsWith("VideoStore") && t.Namespace.EndsWith("Commands"))
-            //        .DefiningEventsAs(t => t.Namespace != null && t.Namespace.StartsWith("VideoStore") && t.Namespace.EndsWith("Events"))
-                 // .DefiningMessagesAs(t => t.Namespace != null && t.Namespace.StartsWith("Message") && !t.Namespace.EndsWith("RequestResponse"));
-            //        .DefiningEncryptedPropertiesAs(p => p.Name.StartsWith("Encrypted"));
+            config.Conventions()
+         .DefiningCommandsAs(t => t.Namespace != null && t.Namespace.StartsWith("NSB") && t.Namespace.EndsWith("Commands"));
+         //.DefiningEventsAs(t => t.Namespace != null && t.Namespace.StartsWith("VideoStore") && t.Namespace.EndsWith("Events"))
+         //.DefiningMessagesAs(t => t.Namespace != null && t.Namespace.StartsWith("VideoStore") && t.Namespace.EndsWith("RequestResponse"));
+         //.DefiningEncryptedPropertiesAs(p => p.Name.StartsWith("Encrypted"));
             //config.TraceLogger();
-            
+
             config.UseTransport<AzureStorageQueueTransport>();
-            //config.UsePersistence<AzureStoragePersistence>();
+            config.UsePersistence<AzureStoragePersistence>();
             config.PurgeOnStartup(true);
             //config.RijndaelEncryptionService();
             config.EnableInstallers();
 
             //BusConfiguration busConfiguration = new BusConfiguration();
-            startableBus = NServiceBus.Bus.CreateSendOnly(config);
+            startableBus = NServiceBus.Bus.Create(config);
            
-            bus = startableBus;
+            bus = startableBus.Start();
             //startableBus = NServiceBus.Bus.CreateSendOnly(config);
             //bus = startableBus.Start()
 

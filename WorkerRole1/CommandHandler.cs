@@ -6,12 +6,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using NServiceBus;
+using NSB.Messages.Commands;
 
 namespace WorkerRole1
 {
-    class CommandHandler : IHandleMessages<NSB.Messages.Order>
+    class CommandHandler : IHandleMessages<PlaceOrderCommand>
     {
-        public void Handle(NSB.Messages.Order orderCommand)
+        public void Handle(PlaceOrderCommand orderCommand)
         {
             Console.Write("order accepted");
 
