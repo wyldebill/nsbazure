@@ -54,12 +54,16 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Profiles" />
     <Folder Include="SalesContent" />
     <Folder Include="WebApplication2Content\" />
   </ItemGroup>
   <ItemGroup>
     <DiagnosticsConfiguration Include="SalesContent\diagnostics.wadcfgx" />
     <DiagnosticsConfiguration Include="WebApplication2Content\diagnostics.wadcfgx" />
+  </ItemGroup>
+  <ItemGroup>
+    <PublishProfile Include="Profiles\nsbmvcProduction.azurePubxml" />
   </ItemGroup>
   <!-- Import the target files for this project template -->
   <PropertyGroup>
