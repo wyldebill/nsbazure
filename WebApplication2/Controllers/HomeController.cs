@@ -21,7 +21,7 @@ namespace WebApplication2.Controllers
             Random rnd = new Random();
             var command = new PlaceOrderCommand()
             {
-                Id = new Guid(),
+                Id = Guid.NewGuid(),
                 Amount = rnd.Next(1, 100)
             };
 
