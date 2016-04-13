@@ -14,6 +14,7 @@ namespace WorkerRole1
     {
         public void Handle(PlaceOrderCommand orderCommand)
         {
+            System.Threading.Thread.Sleep(2000);
             Console.Write("order accepted");
 
         }

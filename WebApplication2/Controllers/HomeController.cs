@@ -13,9 +13,15 @@ namespace WebApplication2.Controllers
     {
         public ActionResult Index()
         {
+            
             return View();
         }
 
+        public ActionResult Block()
+        {
+            System.Threading.Thread.Sleep(2000);
+            return View("Index");
+        }
         public ActionResult TestNSB()
         {
             Random rnd = new Random();
